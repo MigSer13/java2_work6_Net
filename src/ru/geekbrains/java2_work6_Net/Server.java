@@ -27,7 +27,6 @@ public class Server {
                     @Override
                     public void run() {
                         Scanner sc = new Scanner(System.in);
-                        if (sc.hasNext()) {
                             while (sc.hasNext()) {
                                 String textToSend = sc.nextLine();
                                 try {
@@ -37,7 +36,6 @@ public class Server {
                                 }
                                 break;
                             }
-                        }
                     }
                 }).start();
                 String lineFromClient = in.readUTF();
