@@ -37,6 +37,8 @@ public class Client {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    closedConnection();
                 }
             }
         }).start();
@@ -52,9 +54,21 @@ public class Client {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    closedConnection();
                 }
             }
         }).start();
 
+    }
+
+    private void closedConnection() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

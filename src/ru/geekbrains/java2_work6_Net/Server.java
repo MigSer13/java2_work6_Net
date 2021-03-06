@@ -52,5 +52,15 @@ public class Server {
         }
 
     }
+
+    private void closedConnection() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
