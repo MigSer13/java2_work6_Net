@@ -27,7 +27,6 @@ public class Server {
                     @Override
                     public void run() {
                         Scanner sc = new Scanner(System.in);
-                        if (sc.hasNext()) {
                             while (sc.hasNext()) {
                                 String textToSend = sc.nextLine();
                                 try {
@@ -37,7 +36,6 @@ public class Server {
                                 }
                                 break;
                             }
-                        }
                     }
                 }).start();
                 String lineFromClient = in.readUTF();
@@ -51,6 +49,16 @@ public class Server {
             e.printStackTrace();
         }
 
+    }
+
+    private void closedConnection() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
