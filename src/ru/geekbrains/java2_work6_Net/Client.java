@@ -16,35 +16,24 @@ public class Client {
     private DataOutputStream out;
 
     public Client() {
-//        try {
-//            socket = new Socket(ADDRESS_SERVER, PORT_SERVER);
-//            in = new DataInputStream(socket.getInputStream());
-//            out = new DataOutputStream(socket.getOutputStream());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }finally {
-//            try {
-//                socket.close();
-//                in.close();
-//                out.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        try {
+            socket = new Socket(ADDRESS_SERVER, PORT_SERVER);
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     while (true) {
-                        socket = new Socket(ADDRESS_SERVER, PORT_SERVER);
-                        in = new DataInputStream(socket.getInputStream());
-                        out = new DataOutputStream(socket.getOutputStream());
                         String resultingStr = in.readUTF();
                         if ("end".equals(resultingStr.toLowerCase())) {
                             break;
                         }
-                        System.out.println("Ответ сервера: " + resultingStr);
+                        System.out.println("Cервер: " + resultingStr);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -57,9 +46,6 @@ public class Client {
             public void run() {
                 Scanner sc = new Scanner(System.in);
                 try {
-                    socket = new Socket(ADDRESS_SERVER, PORT_SERVER);
-                    in = new DataInputStream(socket.getInputStream());
-                    out = new DataOutputStream(socket.getOutputStream());
                     while (sc.hasNext()) {
                         String textToSend = sc.nextLine();
                         out.writeUTF(textToSend);
